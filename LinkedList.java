@@ -22,7 +22,19 @@ public class LinkedList {
         Node newNode = new Node(value);
     }
     public boolean insert(int index, int value) {
-        Node newNode = new Node(value); 
+        Node newNode = new Node(value);
         return false;
     }
+
+    public void printList() {
+        Node temp = head;
+        while(temp != null) {
+            System.out.println(temp.value);
+            temp = temp.next;
+        }
+    }
+
+    public void getHead() { System.out.printf("Head: %d\n", head.value); }
+    public void getTail() { System.out.printf("Tail: %d\n", tail.value); }
+    public void getLength() {  System.out.printf("Length: %d\n ", length); }
 }
