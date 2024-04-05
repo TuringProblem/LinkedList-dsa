@@ -1,5 +1,3 @@
-import java.util.function.Predicate;
-
 public class LinkedList {
     private Node tail;
     private Node head;
@@ -34,6 +32,24 @@ public class LinkedList {
         }
         length++;
     }
+    //going to make two variable for iterating through the Nodes, using "pre" and "temp"
+    public Node removeLast() {
+        if (length == 0) return null;
+        Node temp = head;
+        Node pre = head;
+        while (temp.next != null) {//iterates temp to go through the Linked List and see if the values are not null
+            pre = temp;
+            temp = temp.next;
+        }
+        tail = pre;
+        tail.next = null;
+        length--;
+        if  (length == 0) {//this edge case checks if the length is 0 after decrementing through the LinkedList
+            head = null;
+            tail = null;
+        }
+        return temp;
+    }
     public void  prepend(int value) {
         //create a new Node
         Node newNode = new Node(value);
@@ -41,10 +57,25 @@ public class LinkedList {
             head = newNode;
             tail = newNode;
         } else {
+            /**
+             *Assign the first Node (newNode.next) -> (next being the pointer) to the head (which points to the first Node)
+             *  && assign head to the newNode being added to the beginning of the list
+             */
             newNode.next = head;
             head = newNode;
         }
         length++;
+    }
+    public Node removeFirst() {
+        if (length == 0) return null;
+        Node temp = head;
+        head = head.next;
+        temp.next = null;
+        length--;
+        if (length == 0) {
+            tail = null;
+        }
+        return temp;
     }
     public boolean insert(int index, int value) {
         Node newNode = new Node(value);
@@ -54,7 +85,7 @@ public class LinkedList {
     public void printList() {
         Node temp = head;
         while(temp != null) {
-            System.out.println(temp.value);
+            System.out.printf("%d\n",temp.value);
             temp = temp.next;
         }
     }
